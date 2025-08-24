@@ -1,4 +1,4 @@
-# 智能任务分解与激励系统（AI List Todo）  
+# 智能任务分解（AI List Todo）  
 [![GitHub stars](https://img.shields.io/github/stars/yourname/ai-list-todo?style=social)](https://github.com/yourname/ai-list-todo) [![GitHub issues](https://img.shields.io/github/issues/yourname/ai-list-todo)](https://github.com/yourname/ai-list-todo/issues) [![MIT License](https://img.shields.io/github/license/yourname/ai-list-todo)](./LICENSE)
 
 <p align="center">
