@@ -538,7 +538,7 @@ const Settings: React.FC = () => {
               </div>
               <div className="pt-2 border-t border-gray-200">
                 <p className="text-center text-gray-500">
-                  智能任务分解与激励系统 - 让每个目标都变得可达成
+                  任务拆解小助手 - 让每个目标都变得可达成
                 </p>
               </div>
             </div>

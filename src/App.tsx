@@ -85,7 +85,7 @@ function App() {
                 <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center mr-3">
                   <span className="text-primary-500 font-bold text-lg">T</span>
                 </div>
-                <h1 className="text-white font-bold text-lg">任务分解器</h1>
+                <h1 className="text-white font-bold text-lg">任务拆解小助手</h1>
               </div>
             </div>
             
@@ -114,7 +114,7 @@ function App() {
             {/* 底部信息 */}
             <div className="flex-shrink-0 p-4 border-t border-gray-200">
               <div className="text-xs text-gray-500 text-center">
-                <p>智能任务分解与激励系统</p>
+                <p>任务拆解小助手</p>
                 <p className="mt-1">v1.0.0</p>
               </div>
             </div>
@@ -128,7 +128,7 @@ function App() {
               <div className="w-8 h-8 bg-gradient-to-r from-primary-500 to-primary-600 rounded-lg flex items-center justify-center mr-3">
                 <span className="text-white font-bold text-lg">T</span>
               </div>
-              <h1 className="text-gray-800 font-bold text-lg">任务分解器</h1>
+              <h1 className="text-gray-800 font-bold text-lg">任务拆解小助手</h1>
             </div>
             <button
               onClick={toggleMobileMenu}
@@ -169,7 +169,7 @@ function App() {
                     <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center mr-3">
                       <span className="text-primary-500 font-bold text-lg">T</span>
                     </div>
-                    <h1 className="text-white font-bold text-lg">任务分解器</h1>
+                    <h1 className="text-white font-bold text-lg">任务拆解小助手</h1>
                   </div>
                 </div>
                 
