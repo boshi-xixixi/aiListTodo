@@ -267,22 +267,51 @@ export class TaskDecompositionService {
   }
 
   /**
+   * 提取步骤标题
+   * @param content 步骤完整内容
+   * @returns string 简洁标题
+   */
+  private extractTitle(content: string): string {
+    const punctuations = ['：', ':', '，', ',', '。'];
+    for (const p of punctuations) {
+      const idx = content.indexOf(p);
+      if (idx > 0 && idx <= 30) {
+        return content.slice(0, idx);
+      }
+    }
+    return content.length > 30 ? content.slice(0, 30) + '...' : content;
+   }
+
+   /**
+    * 提取步骤描述，去除标题部分和前置标点
+    */
+   private extractDescription(content: string): string {
+     const title = this.extractTitle(content);
+     let desc = content.startsWith(title) ? content.slice(title.length) : content;
+     desc = desc.replace(/^[:：，,。\s]+/, '');
+     return desc.length === 0 ? title : desc;
+   }
+
+  /**
    * 转换为TaskStep格式
    * @param steps AI返回的步骤数组
    * @returns TaskStep[] 格式化的任务步骤数组
    */
   private convertToTaskSteps(steps: { content: string; encouragement: string }[]): TaskStep[] {
-    return steps.map((step, index) => ({
+    return steps.map((step, index) => {
+      const title = this.extractTitle(step.content);
+      return {
       id: `step-${Date.now()}-${index}`,
-      title: step.content.split('：')[0] || step.content.substring(0, 20) + '...', // 提取标题
+      title,
       content: step.content,
-      description: step.content, // 使用内容作为描述
+      description: this.extractDescription(step.content),
       encouragement: step.encouragement,
       completed: false,
       stepOrder: index + 1,
       estimatedMinutes: this.estimateStepDuration(step.content), // 估算时间
       difficulty: this.estimateStepDifficulty(step.content) // 估算难度
-    }));
+      };
+    });
   }
 
   /**

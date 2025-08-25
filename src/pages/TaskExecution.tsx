@@ -8,6 +8,8 @@ import {
   Trophy, 
   ArrowLeft, 
   Sparkles,
+  Flame,
+  Activity,
   Target,
   Calendar,
   Timer
@@ -21,6 +23,19 @@ import { LocalStorageService } from '../services/localStorage';
  * 显示任务步骤列表，跟踪完成进度，提供庆祝动效
  */
 const TaskExecution: React.FC = () => {
+  // 根据难度返回对应图标
+  const getDifficultyIcon = (difficulty: 'easy' | 'medium' | 'hard') => {
+    switch (difficulty) {
+      case 'easy':
+        return <Sparkles className="w-5 h-5 text-green-500 mr-1" />;
+      case 'medium':
+        return <Activity className="w-5 h-5 text-yellow-500 mr-1" />;
+      case 'hard':
+        return <Flame className="w-5 h-5 text-red-500 mr-1" />;
+      default:
+        return null;
+    }
+  };
   const { taskId } = useParams<{ taskId: string }>();
   const navigate = useNavigate();
   const [task, setTask] = useState<Task | null>(null);
@@ -337,10 +352,10 @@ const TaskExecution: React.FC = () => {
                 {/* 步骤内容 */}
                 <div className="flex-1">
                   <div className="flex items-start justify-between mb-2">
-                    <h3 className={`text-lg font-semibold transition-all duration-200 ${
+                    <h3 className={`flex items-center text-lg font-semibold transition-all duration-200 ${
                       step.completed ? 'text-green-700 line-through' : 'text-gray-800'
                     }`}>
-                      {step.title}
+                      {getDifficultyIcon(step.difficulty)}{step.title}
                     </h3>
                     <div className="flex items-center text-sm text-gray-500 ml-4">
                       <Clock className="w-4 h-4 mr-1" />
@@ -348,11 +363,13 @@ const TaskExecution: React.FC = () => {
                     </div>
                   </div>
                   
-                  <p className={`text-gray-600 mb-3 transition-all duration-200 ${
-                    step.completed ? 'opacity-60' : ''
-                  }`}>
-                    {step.description}
-                  </p>
+                  {step.description && step.description !== step.title && (
+                    <p className={`text-gray-600 mb-3 transition-all duration-200 ${
+                      step.completed ? 'opacity-60' : ''
+                    }`}>
+                      {step.description}
+                    </p>
+                  )}
 
                   {/* 步骤标签 */}
                   <div className="flex flex-wrap gap-2">
